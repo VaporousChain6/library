@@ -3,13 +3,22 @@
     text-align: center;
     font-size: 35px;
 }
-
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .bookshelf{
     display: grid;
     grid-template-columns: 8% 84% 8%;
+    width: 95%;
 
 }
 
+.array{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
 .tome{
 
 
@@ -22,5 +31,9 @@
 
 .bookAuthor{
 
-    
+
+}
+
+.readStatus{
+
 }

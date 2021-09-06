@@ -1,0 +1,26 @@
+
+.pageTitle{
+    text-align: center;
+    font-size: 35px;
+}
+
+.bookshelf{
+    display: grid;
+    grid-template-columns: 8% 84% 8%;
+
+}
+
+.tome{
+
+
+}
+
+.bookTitle{
+
+
+}
+
+.bookAuthor{
+
+    
+}

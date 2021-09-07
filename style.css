@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .bookshelf{
     display: grid;
     grid-template-columns: 8% 84% 8%;
@@ -17,23 +18,64 @@
 
 .array{
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
 }
-.tome{
+.bookButton{
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    background-color: honeydew;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 6px;
+    padding: 5px;
+    
+}
+.arrow:hover{
+    background-color: darkgray;
+}
+.arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.tome{
+    margin: 5px;
+    padding: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+    border-color: deepskyblue;
+    text-align: center;
+    background-color: hsla(191, 100%, 79%, 0.56);
 
 }
 
 .bookTitle{
-
-
-}
-
-.bookAuthor{
-
+    border-style: solid;
+    border-bottom-color: dodgerblue;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
 
 }
 
 .readStatus{
+    background-color: greenyellow;
+    padding: 3px;
+}
 
+.bookForm{
+    position: absolute;
+    right: 45%;
+    top: 60%;
+    border-style: solid;
+    background-color: lavender;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.jump{
+    margin: 8px;
 }

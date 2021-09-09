@@ -12,9 +12,6 @@ function book(name, author, pages, read){
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function(){
-        return(`${this.name}, written by ${this.author}, has ${this.pages} pages, ${this.read}`)
-    }
 }
 
 function addBook(name, author, pages, read){
@@ -42,12 +39,32 @@ function bookDom(ind){
     const finished = document.createElement("p");
     finished.classList.add("readStatus");
     finished.textContent = `${library[ind].read}`
+    finished.addEventListener("click", function(){
+        if (finished.textContent == "Read"){
+            finished.textContent = "Not read yet";
+        
+        }
+        else{
+            finished.textContent = "Read";
+        }
+    })
     
+    const removeButton = document.createElement("button");
+    removeButton.classList.add("removeButton");
+    removeButton.textContent = "Remove book";
+    removeButton.addEventListener("click", function(){
+        tome.innerHTML = ""
+        delete(tome);
+        library.splice(ind, 1);
+        updateDisplay(index);
+    })
     
+
     tome.appendChild(bookTitle);
     tome.appendChild(bookAuthor);
     tome.appendChild(numPages);
     tome.appendChild(finished);
+    tome.appendChild(removeButton);
     shelf.appendChild(tome);
 
  
@@ -85,6 +102,15 @@ function bookForm(){
     const form = document.createElement("div");
     form.classList.add("bookForm")
 
+    const closeButton = document.createElement("button");
+    closeButton.classList.add("closeButton");
+    closeButton.textContent = "X";
+    closeButton.addEventListener("click", function(){
+        clearForm();
+    })
+    form.appendChild(closeButton);
+
+
     const titleInf = document.createElement("p");
     titleInf.textContent = "Book title:";
     form.appendChild(titleInf);
@@ -114,7 +140,16 @@ function bookForm(){
     form.appendChild(readInf);
 
         const readSpace = document.createElement("button");
-        readSpace.textContent = "No";
+        readSpace.textContent = "Not read yet";
+
+            readSpace.addEventListener("click", function(){
+                if (readSpace.textContent == "Not read yet"){
+                    readSpace.textContent = "Read";
+                }
+                else{
+                    readSpace.textContent = "Not read yet";
+                }
+            })
         form.appendChild(readSpace);
 
         const jump = document.createElement("p");
@@ -129,15 +164,29 @@ function bookForm(){
     newBookForm.appendChild(form);
     
     sumbitButton.addEventListener("click", function(){
+        if (titleSpace.value == ""){
+            alert("Title can't be emty");
+        }
+        else if (isNaN(pageSpace.value)){
+            alert("Pages must be a number")
+        }
+        else if (titleSpace.value.length > 20  || authorSpace.value.length > 25  || pageSpace.value.length > 25){
+            alert("Too many characters!");
+        }
+        else{
+            passForm();
+        }
+    })
+    function passForm(){
         let titleSent = titleSpace.value;
         let authorSent = authorSpace.value;
         let pageSent = pageSpace.value;
-        let readSent = readSpace.value;
+        let readSent = readSpace.textContent;
 
         addBook(titleSent, authorSent, pageSent, readSent);
         clearForm();
         return;
-    })
+    }
 
     return;
 
@@ -148,12 +197,20 @@ function clearForm(){
     return;
 }
 leftArrow.addEventListener("click", function(){
+    if(index < 0){
+        return;
+    }
     index = index-1;
     updateDisplay(index);
 });
 rightArrow.addEventListener("click", function(){
+    if (index > library.length-8){
+        return;
+    }
+    else{
     index = index+1;
     updateDisplay(index);
+    }
 })
 
 bookButton.addEventListener("click", function(){

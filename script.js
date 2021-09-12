@@ -42,10 +42,14 @@ function bookDom(ind){
     finished.addEventListener("click", function(){
         if (finished.textContent == "Read"){
             finished.textContent = "Not read yet";
+            library[ind].read = "Not read yet"
+            saveData();
         
         }
         else{
             finished.textContent = "Read";
+            library[ind].read = "Read";
+            saveData();
         }
     })
     
@@ -57,6 +61,7 @@ function bookDom(ind){
         delete(tome);
         library.splice(ind, 1);
         updateDisplay(index);
+        saveData();
     })
     
 
@@ -185,7 +190,10 @@ function bookForm(){
 
         addBook(titleSent, authorSent, pageSent, readSent);
         clearForm();
+        updateDisplay(index);
+        saveData();
         return;
+
     }
 
     return;
@@ -195,6 +203,22 @@ function bookForm(){
 function clearForm(){
     newBookForm.innerHTML = "";
     return;
+}
+
+function saveData() {
+    localStorage.setItem(`lib`, JSON.stringify(library));
+}
+
+//pulls books from local storage when page is refreshed
+function retrieveData() {
+    if(!localStorage.lib) {
+        render();
+    }else {
+        let objects = localStorage.getItem('lib') // gets information from local storage to use in below loop to create DOM/display
+        objects = JSON.parse(objects);
+        library = objects;
+        updateDisplay(0);
+    }
 }
 leftArrow.addEventListener("click", function(){
     if(index < 0){
@@ -220,22 +244,30 @@ bookButton.addEventListener("click", function(){
 });
 
 
-addBook("Berserk", "Nakamura", 2790, "not read yet");
-addBook("bible", "various", 1200, "not read yet");
-addBook("test", "me", 3, "read" );
-addBook("kjnb", "me", 3, "read" );
-addBook("rtjkmnbv", "me", 3, "read" );
-addBook("testrt", "me", 3, "read" );
-addBook("mgt", "me", 3, "read" );
-addBook("wruyj", "me", 3, "read" );
-addBook("tewerthst", "me", 3, "read" );
-addBook("ag", "me", 3, "read" );
-addBook("end", "me", 3, "read" );
+addBook("Example", "Click to add new book","0" , "click to change read status");
+//addBook("bible", "various", 1200, "not read yet");
+//addBook("test", "me", 3, "read" );
+//addBook("kjnb", "me", 3, "read" );
+//addBook("rtjkmnbv", "me", 3, "read" );
+//addBook("testrt", "me", 3, "read" );
+//addBook("mgt", "me", 3, "read" );
+//addBook("wruyj", "me", 3, "read" );
+//addBook("tewerthst", "me", 3, "read" );
+//addBook("ag", "me", 3, "read" );
+//addBook("end", "me", 3, "read" );
 
 console.table(library);
 updateDisplay(0);
+retrieveData();
+function firstLoad(){
+    if(index < 0){
+        return;
+    }
+    index = index-1;
+    updateDisplay(index);
+}
 
-
+firstLoad();
 
 
 

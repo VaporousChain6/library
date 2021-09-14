@@ -245,26 +245,15 @@ bookButton.addEventListener("click", function(){
 
 
 addBook("Example", "Click to add new book","0" , "click to change read status");
-//addBook("bible", "various", 1200, "not read yet");
-//addBook("test", "me", 3, "read" );
-//addBook("kjnb", "me", 3, "read" );
-//addBook("rtjkmnbv", "me", 3, "read" );
-//addBook("testrt", "me", 3, "read" );
-//addBook("mgt", "me", 3, "read" );
-//addBook("wruyj", "me", 3, "read" );
-//addBook("tewerthst", "me", 3, "read" );
-//addBook("ag", "me", 3, "read" );
-//addBook("end", "me", 3, "read" );
 
 console.table(library);
 updateDisplay(0);
 retrieveData();
 function firstLoad(){
-    if(index < 0){
-        return;
-    }
     index = index-1;
     updateDisplay(index);
+    updateDisplay(0);
+    return;
 }
 
 firstLoad();

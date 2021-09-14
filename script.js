@@ -60,7 +60,7 @@ function bookDom(ind){
         tome.innerHTML = ""
         delete(tome);
         library.splice(ind, 1);
-        updateDisplay(index);
+        updateDisplay(index -1);
         saveData();
     })
     

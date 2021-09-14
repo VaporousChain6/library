@@ -46,10 +46,11 @@ body{
     
 }
 .arrow:hover{
-    background-color: #EFD0CA;
+    background-color: #f0e0ddc9;
     border-style: solid;
     border-radius: 6px;
     border-width: 3px;
+    color: violet;
 }
 .arrow{
     display: flex;
